@@ -1,0 +1,96 @@
+body{
+    background-color: rgb(199, 225, 236);
+}
+#calculator{
+    display: flex;
+    width: 550px;
+    height: 600px;
+    margin: auto;
+    background-color: hsl(271, 76%, 53%);
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 15px;
+    padding: 15px 10px;
+    margin-top: 60px;
+}
+#history-part{
+    width: 400px;
+}
+#myHistory{
+    white-space: pre-line;
+}
+h1{
+    color: hsl(0, 0%, 100%);
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+input{
+    display: block;
+    height: 20px;
+    width: 75%;
+    margin: auto;
+    margin-bottom: 25px;
+    padding: 15px 15px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.8em;
+}
+#mySubmit{
+    display: block;
+    margin: auto;
+    width: 85%;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(0, 59%, 41%);
+}
+#mySubmit:hover{
+    background-color: hsl(0, 59%, 31%);
+}
+#mySubmit:active{
+    background-color: hsl(0, 59%, 51%);
+}
+#myClear{
+    display: block;
+    margin: auto;
+    width: 85%;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(199, 69%, 55%);
+}
+#myClear:hover{
+    background-color: hsl(199, 69%, 45%);
+}
+#myClear:active{
+    background-color: hsl(199, 69%, 85%);
+}
+p{
+    font-size: 1.5em;
+    text-align: center;
+    color: rgb(235, 176, 15);
+}
+label{
+    display: block;
+    padding-left: 30px;
+    padding-bottom: 15px;
+    font-size: 1.2em;
+    color: hsl(0, 0%, 100%);
+}
+select{
+    display: block;
+    height: 50px;
+    width: 83%;
+    margin: auto;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5em;
+}
