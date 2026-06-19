@@ -4,30 +4,75 @@ body{
 }
 #container{
     background-color:  hsl(33, 100%, 89%);
-    padding: 15px 20px;
+    padding: 40px 20px;
     max-width: 600px;
     margin: auto;
-    border-radius: 10px;
+    margin-top: 150px;
+    border-radius: 25px;
     box-shadow: 3px 3px 15px rgb(132, 88, 6);
 }
 #gameName{
+    width: 500px;
+    height: 50px;
+    background-color: none;
+    border: 3px solid hsl(32, 99%, 27%);
+    border-radius: 15px;
     font-size: 2.5em;
     font-weight: bolder;
-    color: hsl(23, 87%, 60%);
+    color: hsl(23, 62%, 28%);
     padding: 20px;
+    margin: auto;
     text-align: center;
 }
-#discription{}
+#discription{
+    font-size: 1.3em;
+    font-weight: 600;
+    padding-left: 19px;
+    margin: 50px 0px 25px 0px;
+    color: hsl(32, 92%, 19%);
+}
 #GuessedNumber{
     display: block;
-    font-size: 1.8em;
+    font-size: 2em;
     font-weight: bold;
     text-align: center;
+    color: hsl(32, 99%, 27%);
     width: 550px;
     margin: auto;
-    border: none;
-    border-radius: 5px;
-    padding: 0px 10px;
+    margin-bottom: 15px;
+    border: 2px solid hsl(32, 99%, 27%);
+    border-radius: 10px;
+    padding: 15px 10px;
     background-color: hsl(34, 71%, 68%);
     text-decoration: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#myCheck{
+    display: block;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: hsl(31, 86%, 86%);
+    width: 575px;
+    padding: 10px 10px;
+    margin: auto;
+    border: none;
+    border-radius: 10px;
+    background-color: hsl(32, 99%, 27%);
+}
+#myCheck:hover{
+    background-color: hsl(32, 99%, 23%);
+}
+#myCheck:active{
+    background-color: hsl(32, 99%, 30%);
+}
+#myResult{
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 50px 0px 25px 0px;
+    color: hsl(32, 92%, 19%);
 }
