@@ -1,13 +1,15 @@
 body{
     background-color: hsl(34, 81%, 18%);
     font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    display: grid;
+    place-items: center;
 }
 #container{
     background-color:  hsl(33, 100%, 89%);
     padding: 40px 20px;
     max-width: 600px;
     margin: auto;
-    margin-top: 150px;
     border-radius: 25px;
     box-shadow: 3px 3px 15px rgb(132, 88, 6);
 }
@@ -31,7 +33,7 @@ body{
     margin: 50px 0px 25px 0px;
     color: hsl(32, 92%, 19%);
 }
-#GuessedNumber{
+#myGuess{
     display: block;
     font-size: 2em;
     font-weight: bold;
@@ -73,6 +75,13 @@ input::-webkit-inner-spin-button {
     text-align: center;
     font-size: 1.1em;
     font-weight: 600;
-    margin: 50px 0px 25px 0px;
+    margin: 40px 0px 0px 0px;
+    color: hsl(32, 92%, 19%);
+}
+#myAttempts{
+    text-align: center;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin: 15px 0px 0px 0px;
     color: hsl(32, 92%, 19%);
 }

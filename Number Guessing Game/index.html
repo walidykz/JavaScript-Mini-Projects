@@ -10,9 +10,10 @@
     <section id="container">
         <h1 id="gameName">Number Guessing Game</h1>
         <p id="discription">Guess a Number between 1 and 100:</p>
-        <input type="number" id="GuessedNumber" min="0">
-        <button type="button" onclick="checkMyNumber()" id="myCheck">Check</button>
-        <p id="myResult">Congatulation you find the Number after 5 attempts</p>    
+        <input type="number" id="myGuess" min="1">
+        <button type="button" onclick="checkGuess()" id="myCheck">Check</button>
+        <p id="myResult"></p>
+        <p id="myAttempts"></p>    
     </section>
     <script src="index.js"></script>
 </body>
