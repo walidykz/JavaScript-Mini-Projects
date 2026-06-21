@@ -12,6 +12,8 @@ confirm.addEventListener("click", gameDifficulty);
 const myResult = document.getElementById("myResult");
 const myAttempts = document.getElementById("myAttempts");
 let attempts = 0;
+let maxAttempts = 0;
+check.disabled = true;
 
 description.textContent = `Choose a difficulty level : `;
 
@@ -21,19 +23,23 @@ const hard = document.getElementById("hard");
 
 function gameDifficulty(){
     if(easy.checked){
-        Min =    1;
+        Min = 1;
         Max = 50;
+        maxAttempts = 10;
     }else if(medium.checked){
         Min = 1;
         Max = 100;
+        maxAttempts = 15;
     }else if(hard.checked){
         Min = 1;
         Max = 500;
+        maxAttempts = 20;
     }else{
         description.textContent = "Choose a difficulty first"
         return;
     }
 
+    check.disabled = false;
     startGame(Min,Max);
     description.textContent = `Enter a Number between ${Min} & ${Max} : `;
 }
@@ -53,6 +59,11 @@ function checkGuess(){
          myResult.textContent = "Enter a number!"; 
          return; 
     }
+    if(attempts >= maxAttempts){
+        description.textContent = "Game Over! Press Restart."
+        check.disabled = true;
+        return; 
+    }
     const guess = Number(myGuess.value);
     
     if(guess < Min || guess > Max){
@@ -67,16 +78,20 @@ function checkGuess(){
         attempts++;
         myAttempts.textContent = `Your attempts : ${attempts}`;
     }else{
+        check.disabled = true;
         attempts++;
-        myResult.textContent = `Congratulations! You just find the Correct Number : ${randomNumber}, After ${attempts} attempts.`;
+        
+        myResult.textContent = 
+        `Congratulations! You just find the Correct Number : ${randomNumber}, After ${attempts} attempts.`;
+        description.textContent = "Game finished! Press Restart."
+
         myAttempts.textContent = "";
     }
 }
 
 function restartGame(){
-    if(Min === undefined || Max === undefined){
-        return;
-    }
+    Min = undefined;
+    Max = undefined;
     startGame(Min,Max);
     myResult.textContent = "";
     myAttempts.textContent = "";
