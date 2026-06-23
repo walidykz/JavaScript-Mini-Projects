@@ -1,7 +1,7 @@
 let Min ;
 let Max ;
 let randomNumber; 
-const description = document.getElementById("discription");
+const description = document.getElementById("description");
 const myGuess = document.getElementById("myGuess");
 const check = document.getElementById("myCheck");
 check.addEventListener("click", checkGuess);
@@ -90,8 +90,9 @@ function checkGuess(){
 }
 
 function restartGame(){
-    Min = undefined;
-    Max = undefined;
+    if(Min === undefined || Max === undefined){
+        return;
+    }
     startGame(Min,Max);
     myResult.textContent = "";
     myAttempts.textContent = "";

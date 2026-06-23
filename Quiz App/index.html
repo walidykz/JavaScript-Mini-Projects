@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="container">
+        <section id="Title_container">
+            <h1 id="Title">Qui<span id="differ">z</span></h1>
+        </section>
+        <section id="Game_container">
+            <section id="Question_container">
+                <p id="qTitle">Question :</p>
+                <p id="Question">What is the biggest County in Africa ?</p>
+            </section>
+            <section id="Answer_container">
+                <div id="Answers">
+                    <div class="answer">
+                        <input type="radio" name="Answer" id="Answer1">
+                        <label for="Answer1" id="Answer1L">Algeria</label>
+                    </div><br>
+                    <div class="answer">
+                        <input type="radio" name="Answer" id="Answer2">
+                        <label for="Answer2" id="Answer2L">Egypt</label>
+                    </div><br>
+                    <div class="answer">
+                        <input type="radio" name="Answer" id="Answer3">
+                        <label for="Answer3" id="Answer3L">South Africa</label>
+                    </div><br>   
+                </div>
+                <p id="description"></p>
+                <button type="button" id="myConfirm">Confirm</button>
+                <button type="button" id="myNext">Next</button>
+            </section>
+        </section>
+    </section>
+    <script src="index.js"></script>
+</body>
+</html>
