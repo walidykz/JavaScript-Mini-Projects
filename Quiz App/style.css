@@ -32,26 +32,45 @@ body{
     display: flex;
     flex-direction: row;
 }
+#Left_container{
+    display: flex;
+    flex-direction: column;
+}
 #Question_container{
     width: 700px;
     justify-content: left;
-    padding: 0px 0px 50px 70px;
-    height: 350px;
+    height: 200px;
 }
 #qTitle{
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
+    display: block;
+    text-align: center;
+    padding-top: 25px;
     margin-bottom: 75px;
     font-weight: bold;
-    font-size: 2.3em;
+    font-size: 2em;
     color: hsl(199, 75%, 25%);
 }
 #Question{
     font-weight: 500;
     font-size: 1.5em;
+    text-align: center;
     color: hsl(0, 0%, 0%);
 }
+#Score_container{
+    display: block;
+    margin: auto;
+    padding-top: 30px;
+}
+#myScore{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 350px;
+    height: 40px;
+    background-color: hsl(199, 66%, 29%);
+    border-radius: 8px;
+    color: hsl(0, 0%, 100%);
+}   
 #Answer_container{
     justify-content: right;
     width:  400px;
@@ -79,16 +98,16 @@ body{
     margin-bottom: 15px;
     border: none;
     border-radius: 10px;
-    background-color: hsl(199, 75%, 25%);
+    background-color: hsl(49, 100%, 54%);
     color: hsl(0, 0%, 100%);
-    box-shadow:3px 3px 10px hsl(199, 57%, 56%);
+    box-shadow:3px 3px 10px hsl(49, 63%, 44%);
 }
 #myConfirm:hover{
-    background-color: hsl(199, 75%, 18%);
+    background-color: hsl(49, 100%, 48%);
 }
 #myConfirm:active{
-    background-color: hsl(199, 75%, 32%);
-    box-shadow: 3px 3px 10px hsl(199, 57%, 56%);
+    background-color: hsl(49, 100%, 58%);
+    box-shadow: 3px 3px 10px hsl(49, 100%, 58%);
 }#myNext{
     display: block;
     padding: 15px 20px;

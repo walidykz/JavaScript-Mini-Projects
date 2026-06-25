@@ -10,13 +10,22 @@ const answer2L = document.getElementById("Answer2L");
 const answer3L = document.getElementById("Answer3L");
 const description = document.getElementById("description");
 const question = document.getElementById("Question");
-const maxCard = 8;
-let currentCard = 0; 
+const displayScore = document.getElementById("myScore");
+const qTitle = document.getElementById("qTitle");
+let questionCounter = 1;
+let currentCard = 0;
+let score = 0;
+let cardDec = []; 
+
+
 description.textContent = "Choose an answer";
+displayScore.textContent = `Your Score : ${score}`;
+
 
 
 class Card{
-    constructor(question, answer1, answer2, answer3, correctAnswer){
+    constructor(id, question, answer1, answer2, answer3, correctAnswer){
+        this.id = id;
         this.question = question,
         this.answer1 = answer1,
         this.answer2 = answer2,
@@ -25,51 +34,79 @@ class Card{
     }
 
     checkMyAnswer(chosenAnswer){
-        return this.correctAnswer === chosenAnswer ? description.textContent = ("Correct Answer") : description.textContent = ("Wrong Answer");
+        return this.correctAnswer === chosenAnswer;
     }
 }
 
-const cards = [new Card("What is the biggest County in Africa ?", "Algeria", "Egypt", "South Africa", "Algeria"),
-               new Card("What is the largest continent in the world by area?", "Africa", "Asia", "Europe", "Asia"),
-               new Card("Which country has the largest population in the world?", "India", "China", "United States", "India"),
-               new Card("What is the longest river in the world?", "Amazon River", "Nile River", "Yangtze River", "Nile River"),
-               new Card("Which ocean is the largest?", "Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Pacific Ocean"),
-               new Card("What is the capital city of Australia?", "Sydney", "Melbourne", "Canberra", "Canberra"),
-               new Card("Which desert is the largest hot desert in the world?", "Gobi Desert", "Sahara Desert", "Arabian Desert", "Sahara Desert"),
-               new Card("Mount Everest is located in which mountain range?", "Andes", "Alps", "Himalayas", "Himalayas")];
+const cards = [new Card(0, "What is the biggest County in Africa ?", "Algeria", "Egypt", "South Africa", "Algeria"),
+               new Card(1, "What is the largest continent in the world by area?", "Africa", "Asia", "Europe", "Asia"),
+               new Card(2, "Which country has the largest population in the world?", "India", "China", "United States", "India"),
+               new Card(3, "What is the longest river in the world?", "Amazon River", "Nile River", "Yangtze River", "Nile River"),
+               new Card(4, "Which ocean is the largest?", "Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Pacific Ocean"),
+               new Card(5, "What is the capital city of Australia?", "Sydney", "Melbourne", "Canberra", "Canberra"),
+               new Card(6, "Which desert is the largest hot desert in the world?", "Gobi Desert", "Sahara Desert", "Arabian Desert", "Sahara Desert"),
+               new Card(7, "Mount Everest is located in which mountain range?", "Andes", "Alps", "Himalayas", "Himalayas")];
 
+const maxCard = cards.length;
+qTitle.textContent = `Question : ${questionCounter} / ${maxCard}`
 function selectCard(){
-    const cardIndex = Math.floor(Math.random() * maxCard);
+    let cardIndex;
+    let usedCard ;
+    if(cardDec == ""){
+        cardIndex = Math.floor(Math.random() * maxCard);
+        cardDec = [...cardDec, cardIndex];
+        console.log(cardDec);
+    }else{
+        do{
+            usedCard = false;
+            cardIndex = Math.floor(Math.random() * maxCard);
+            for(let i = 0; i< cardDec.length; i++){
+                if(cardIndex == cardDec[i]){
+                    usedCard = true;
+                }
+            }
+
+        }while(usedCard == true);
+    cardDec = [...cardDec, cardIndex];
+    console.log(cardDec);
+    }
+    
     return cardIndex;
 }
 function startGame(){
-    currentCard = selectCard();
+    if(questionCounter == maxCard - 1){
+        confirm.disabled = true;
+        next.disabled = true;
+    }else{
+        currentCard = selectCard();
+        next.disabled = true;
 
-    question.textContent = cards[currentCard].question;
-    answer1L.textContent = cards[currentCard].answer1;
-    answer2L.textContent = cards[currentCard].answer2;
-    answer3L.textContent = cards[currentCard].answer3;
-    answer1.value = cards[currentCard].answer1;
-    answer2.value = cards[currentCard].answer2;
-    answer3.value = cards[currentCard].answer3;
-
-    console.log(answer1.value)
-    console.log(answer2.value)
-    console.log(answer3.value)
+        question.textContent = cards[currentCard].question;
+        answer1L.textContent = cards[currentCard].answer1;
+        answer2L.textContent = cards[currentCard].answer2;
+        answer3L.textContent = cards[currentCard].answer3;
+        answer1.value = cards[currentCard].answer1;
+        answer2.value = cards[currentCard].answer2;
+        answer3.value = cards[currentCard].answer3;
+    }
+   
 }
 function checkAnswer(){
-    if(answer1.checked){
-        cards[currentCard].checkMyAnswer(answer1.value);
-        confirm.disabled = true;
-    }else if(answer2.checked){
-        cards[currentCard].checkMyAnswer(answer2.value);
-        confirm.disabled = true;
-    }else if(answer3.checked){
-        cards[currentCard].checkMyAnswer(answer3.value);
-        confirm.disabled = true;
-    }else{
-        description.textContent ="Please choose an answer!";
+    next.disabled = false;
+    const selectedAnswer = document.querySelector(`input[name="Answer"]:checked`); 
+    if(selectedAnswer == null){
+        description.textContent = "Please choose an answer!";
+        displayScore.textContent = `Your Score : ${score}`;
+        return;
     }
+    if(cards[currentCard].checkMyAnswer(selectedAnswer.value)){
+        description.textContent = "Correct Answer";
+        score++;
+    }else{
+        description.textContent = "Wrong Answer";
+    }
+    displayScore.textContent = `Your Score : ${score}`;
+    confirm.disabled = true;
 }
 
 function nextCard(){
@@ -79,6 +116,9 @@ function nextCard(){
     answer1.checked = false;
     answer2.checked = false;
     answer3.checked = false;
+    questionCounter++;
+    qTitle.textContent = `Question : ${questionCounter} / ${maxCard}`;  
+    console.log(` q : ${questionCounter}`);
 }
-
+console.log(`maxcard ${maxCard}`)
 startGame();
