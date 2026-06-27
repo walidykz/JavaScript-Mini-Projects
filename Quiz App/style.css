@@ -128,3 +128,6 @@ body{
     background-color: hsl(199, 75%, 32%);
     box-shadow: 3px 3px 10px hsl(199, 57%, 56%);
 }
+.hidden{
+    display:none;
+}

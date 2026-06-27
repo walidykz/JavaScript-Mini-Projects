@@ -60,6 +60,30 @@ A number guessing game where the player tries to find a randomly generated numbe
 
 ---
 
+### 3. Quiz Application 📝
+
+A multiple-choice quiz game where users answer questions and receive instant feedback.
+
+**Features:**
+- Multiple-choice questions
+- Random question selection
+- Prevents repeating questions
+- Answer validation
+- Score tracking system
+- Question counter
+- Next question functionality
+- Prevents skipping questions without answering
+- Final score display after completing the quiz
+- Dynamic UI updates using DOM manipulation
+
+**Technologies:**
+- HTML
+- CSS
+- JavaScript
+
+
+---
+
 ## 🛠️ Technologies Used
 
 - HTML5
@@ -77,10 +101,10 @@ Each project is created to apply new concepts and improve my programming skills 
 More JavaScript projects will be added as I continue learning, including:
 
 - Temperature Converter
-- Quiz Application
 - To-Do List
 - Expense Tracker
 - Weather App
+- More interactive web applications
 
 ## 👨‍💻 Author
 

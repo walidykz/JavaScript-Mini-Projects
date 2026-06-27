@@ -2,22 +2,11 @@ const confirm = document.getElementById("myConfirm");
 confirm.addEventListener("click", checkAnswer);
 const next = document.getElementById("myNext");
 next.addEventListener("click", nextCard)
-const answer1 = document.getElementById("Answer1");
-const answer2 = document.getElementById("Answer2");
-const answer3 = document.getElementById("Answer3");
-const answer1L = document.getElementById("Answer1L");
-const answer2L = document.getElementById("Answer2L");
-const answer3L = document.getElementById("Answer3L");
 const description = document.getElementById("description");
-const question = document.getElementById("Question");
 const displayScore = document.getElementById("myScore");
 const qTitle = document.getElementById("qTitle");
 let questionCounter = 1;
-let currentCard = 0;
 let score = 0;
-let cardDec = []; 
-
-
 description.textContent = "Choose an answer";
 displayScore.textContent = `Your Score : ${score}`;
 
@@ -45,58 +34,57 @@ const cards = [new Card(0, "What is the biggest County in Africa ?", "Algeria", 
                new Card(4, "Which ocean is the largest?", "Atlantic Ocean", "Indian Ocean", "Pacific Ocean", "Pacific Ocean"),
                new Card(5, "What is the capital city of Australia?", "Sydney", "Melbourne", "Canberra", "Canberra"),
                new Card(6, "Which desert is the largest hot desert in the world?", "Gobi Desert", "Sahara Desert", "Arabian Desert", "Sahara Desert"),
-               new Card(7, "Mount Everest is located in which mountain range?", "Andes", "Alps", "Himalayas", "Himalayas")];
+               new Card(7, "Mount Everest is located in which mountain range?", "Andes", "Alps", "Himalayas", "Himalayas")
+            ];
 
 const maxCard = cards.length;
 qTitle.textContent = `Question : ${questionCounter} / ${maxCard}`
+let cardDec = []; 
+
 function selectCard(){
     let cardIndex;
-    let usedCard ;
-    if(cardDec == ""){
+    
+    if(cardDec.length === 0){
         cardIndex = Math.floor(Math.random() * maxCard);
-        cardDec = [...cardDec, cardIndex];
-        console.log(cardDec);
     }else{
         do{
-            usedCard = false;
             cardIndex = Math.floor(Math.random() * maxCard);
-            for(let i = 0; i< cardDec.length; i++){
-                if(cardIndex == cardDec[i]){
-                    usedCard = true;
-                }
-            }
 
-        }while(usedCard == true);
-    cardDec = [...cardDec, cardIndex];
-    console.log(cardDec);
+        }while(cardDec.includes(cardIndex));
     }
-    
+
+    cardDec.push(cardIndex);
     return cardIndex;
 }
-function startGame(){
-    if(questionCounter == maxCard - 1){
-        confirm.disabled = true;
-        next.disabled = true;
-    }else{
-        currentCard = selectCard();
-        next.disabled = true;
 
-        question.textContent = cards[currentCard].question;
-        answer1L.textContent = cards[currentCard].answer1;
-        answer2L.textContent = cards[currentCard].answer2;
-        answer3L.textContent = cards[currentCard].answer3;
-        answer1.value = cards[currentCard].answer1;
-        answer2.value = cards[currentCard].answer2;
-        answer3.value = cards[currentCard].answer3;
-    }
-   
+let currentCard = 0;
+const answer1 = document.getElementById("Answer1");
+const answer2 = document.getElementById("Answer2");
+const answer3 = document.getElementById("Answer3");
+const answer1L = document.getElementById("Answer1L");
+const answer2L = document.getElementById("Answer2L");
+const answer3L = document.getElementById("Answer3L");
+const question = document.getElementById("Question");
+
+function startGame(){
+    currentCard = selectCard();
+    next.disabled = true;
+
+    question.textContent = cards[currentCard].question;
+    answer1L.textContent = cards[currentCard].answer1;
+    answer2L.textContent = cards[currentCard].answer2;
+    answer3L.textContent = cards[currentCard].answer3;
+    answer1.value = cards[currentCard].answer1;
+    answer2.value = cards[currentCard].answer2;
+    answer3.value = cards[currentCard].answer3;
 }
+
 function checkAnswer(){
-    next.disabled = false;
     const selectedAnswer = document.querySelector(`input[name="Answer"]:checked`); 
     if(selectedAnswer == null){
         description.textContent = "Please choose an answer!";
         displayScore.textContent = `Your Score : ${score}`;
+        next.disabled = true;
         return;
     }
     if(cards[currentCard].checkMyAnswer(selectedAnswer.value)){
@@ -106,19 +94,47 @@ function checkAnswer(){
         description.textContent = "Wrong Answer";
     }
     displayScore.textContent = `Your Score : ${score}`;
+
+    next.disabled = false;
     confirm.disabled = true;
 }
 
 function nextCard(){
+
+    if(cardDec.length >= maxCard){
+        endGame();
+        return;
+    }
     confirm.disabled = false;
+    questionCounter++;
+    qTitle.textContent = `Question : ${questionCounter} / ${maxCard}`; 
     startGame();
     description.textContent = "Choose an answer";
     answer1.checked = false;
     answer2.checked = false;
-    answer3.checked = false;
-    questionCounter++;
-    qTitle.textContent = `Question : ${questionCounter} / ${maxCard}`;  
-    console.log(` q : ${questionCounter}`);
+    answer3.checked = false; 
 }
-console.log(`maxcard ${maxCard}`)
-startGame();
+
+const answerContainer = document.getElementById("Answer_container");
+function endGame(){
+
+    question.textContent = "Quiz Finished!";
+    answerContainer.classList.add("hidden");
+
+    displayScore.textContent =
+    `Your final score: ${score}/${maxCard}`;
+
+    description.textContent = "";
+
+    answer1L.textContent = "";
+    answer2L.textContent = "";
+    answer3L.textContent = "";
+
+    confirm.disabled = true;
+    next.disabled = true;
+    
+    answer1.style.display = "none";
+    answer2.style.display = "none";
+    answer3.style.display = "none";
+}
+startGame();    
